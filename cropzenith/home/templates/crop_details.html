@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Information</title>
+    <style>
+        /* General reset and body styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("{% static 'images/cbg.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+        }
+
+        /* Navbar styling */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent */
+            padding: 10px 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar .image img {
+            height: 80px;
+            width: auto;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #007BFF;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar .nav-links a {
+            margin-left: 15px;
+        }
+
+        /* Heading styling */
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+        }
+
+        /* Form styling */
+        form {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 25px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent form */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .navbar .nav-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .navbar .nav-links a {
+                margin: 5px 0;
+            }
+
+            form {
+                width: 90%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="image"> 
+            <img src="{% static 'images/log.jpg'%}" alt="logo">
+        </div>
+        <div class="nav-links">
+            <a href="{% url 'homepage' %}">Home</a>
+            <a href="{% url 'profile_view' %}?phone_number={{ profile.phone_number }}">Profile</a>
+            <a href="{% url 'crop_information' %}">Crop Details</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="contactus.html">Contact Us</a>
+            <a href="#">Help Desk</a>
+        </div>
+    </div>
+
+    <h1>Crop Information</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="crop_name">Crop Name:</label>
+        <input type="text" id="crop_name" name="crop_name" required>
+
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,106 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <style>
+        /* Basic reset for margins and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url("{% static 'images/beg.jpg' %}");
+    background-size: cover;  /* Ensures the image covers the whole screen */
+    background-position: center;  /* Centers the background image */
+    background-repeat: no-repeat;  /* Prevents the image from repeating */
+    height: 100vh;  /* Makes the background cover the entire viewport */
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* Styling the navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between image and links */
+    background-color: white; /* Dark background for the navbar */
+    padding: 10px 20px; /* Some padding around navbar */
+}
+
+/* Styling the logo image */
+.navbar .image img {
+    height: 50px; /* Adjust height as per your design */
+    width: auto; /* Maintain aspect ratio */
+}
+
+/* Styling the links */
+.navbar a {
+    color: black;
+    text-decoration: none;
+    padding: 14px 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Aligning the links horizontally */
+.navbar a:hover {
+    background-color: #ddd; /* Change background on hover */
+    color: black; /* Text color change on hover */
+}
+
+/* Flex container for aligning items */
+.navbar .nav-links {
+    display: flex;
+    align-items: center;
+}
+
+/* Add some space between the links */
+.navbar .nav-links a {
+    margin-left: 20px;
+}
+
+/* Text overlay styling */
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    max-width: 80%;
+    line-height: 1.4;
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="image"> 
+        <img height="100px" src="{% static 'images/log.jpg'%}" alt="logo">
+        </div>
+        
+        <a href="{% url 'profile_view' %}?phone_number={{ phone_number }}">Profile</a>
+
+        
+        <a href="{% url 'crop_information' %}">Crop Details</a>
+        <a href="aboutus.html">about us</a>
+        <a href="contactus.html">contact us</a>
+        <a href="help_desk.html">Help Desk</a>
+     
+    </div>
+
+    <!-- Text on background -->
+    <div class="text-overlay">
+        "Empowering farmers with intelligent pesticide prediction — ensuring healthier crops and a sustainable future."
+    </div>
+        
+</body>
+</html>
